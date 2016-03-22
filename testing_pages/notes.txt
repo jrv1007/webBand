@@ -1,0 +1,39 @@
+//Notes
+
+ {{
+ 
+	 Allow user to select how they could control parameters?
+	 
+		{Right clicking on a knob in the UI brings up a popup menu with choices}
+	 
+	 -- Grabbing motion for sustain?  reverb?
+	 
+	 -- Y Position for chorus?
+	 
+	 X Position always for notes i think..
+ 
+ }}
+ 
+ {{
+ 
+	 Visualizer?  Small dot on screen?
+	 
+	 Allow user to designate ranges for different samples?
+	 
+		"Striking" in that range triggers the sound.
+	 
+	 Identify ranges?
+	 
+		[[Think 2 rows of 4 "air buttons"]]
+ 
+ }}
+ 
+ Visualizer made using SVG or Canvas?
+ 
+ Draws position of INDEX fingers {tools - drum stick more accurate?}
+ 
+ ^^ Useful for "Drum sample mode" and "Piano mode"?
+ 
+  -- Make a real piano?
+  
+	Turn off and on "Music Scale Lock Mode"
