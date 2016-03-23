@@ -1,0 +1,84 @@
+<html>
+<head></head>
+
+<body>
+	<img src="3dbox.jpg" style="position: absolute; z-index: -10;">
+	<canvas id="viewport" width="800" height="300" style="z-index: 10;">
+		This text is displayed if your browser does not support HTML5 Canvas.
+	</canvas>
+	
+		<script>
+	var canvas = document.getElementById("viewport");
+	var ctx = canvas.getContext("2d");
+	
+	ctx.globalAlpha = 0.5;
+	
+	ctx.strokeStyle = "#000000";
+	ctx.lineWidth = "10";
+	ctx.strokeRect(0,0,800,300);
+	
+	
+		//Big lines
+	ctx.lineWidth = "5";
+	
+	ctx.beginPath();
+	ctx.moveTo(400,0);
+	ctx.lineTo(400,300);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.moveTo(0,150);
+	ctx.lineTo(800,150);
+	ctx.stroke();
+	
+		//Medium lines
+	ctx.lineWidth = "2";
+	
+	ctx.beginPath();
+	ctx.moveTo(200,0);
+	ctx.lineTo(200,300);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.moveTo(600,0);
+	ctx.lineTo(600,300);
+	ctx.stroke();
+	
+		//Circles
+	ctx.lineWidth = "1";
+	
+			//Left Hand
+	ctx.fillStyle = "#FF0000";
+	
+		//Pinky
+	ctx.beginPath();
+	ctx.arc(200,100,5,0,2*Math.PI);
+	ctx.stroke();
+	ctx.fill();
+	
+		//Ring
+	ctx.beginPath();
+	ctx.arc(240,80,8,0,2*Math.PI);
+	ctx.stroke();
+	ctx.fill();
+	
+		//Middle
+	ctx.beginPath();
+	ctx.arc(280,70,12,0,2*Math.PI);
+	ctx.stroke();
+	ctx.fill();
+	
+		//Index
+	ctx.beginPath();
+	ctx.arc(315,80,9,0,2*Math.PI);
+	ctx.stroke();
+	ctx.fill();
+	
+		//Thumb
+	ctx.beginPath();
+	ctx.arc(320,190,10,0,2*Math.PI);
+	ctx.stroke();
+	ctx.fill();
+	</script>
+</body>
+</html>
