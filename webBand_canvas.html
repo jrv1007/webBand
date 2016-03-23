@@ -13,9 +13,17 @@
 	
 	ctx.globalAlpha = 0.5;
 	
-	function drawHands(leftHand, rightHand){
-			
-		/*
+	function drawHands(){
+			/*
+		
+		for (var i = 0, len = frame.hands.length; i < len; i++){
+			//For all hands in the frame.
+			//if frame.hands[i].type == "left"
+				//parse & draw left
+			//else if frame.hands[i].type == "right" 
+				//parse & draw right
+		}
+		
 		//Get leftHand vars
 		for(var i = 0, len = leftHand.fingers.length; i < len; i++){
 			switch(leftHand.fingers[i]){
@@ -157,9 +165,57 @@
 		ctx.arc(600,190,10,0,2*Math.PI);
 		ctx.stroke();
 		ctx.fill();
-	} //drawHands(leftHand, rightHand)
+	} //drawHands()
 	
-	drawHands(1,2);
+	function convertLMToC(finger){
+		//Takes in a LeapMotion finger and returns
+		//a canvas (X,Y) and circle radius.
+		//["x", "y", "r"]
+		
+			//Current positions
+		/*var f_x = finger.dipPosition;
+		var f_y = finger.pipPosition;
+		var f_z = finger.mcpPosition;*/
+		
+		var f_x = 0;
+		var f_y = 200;
+		var f_z = 100;
+		
+			//Minimum values of the LeapMotion
+		var lm_minX = -300; var lm_minY = -400; var lm_minZ = -400;
+		
+			//Maximum values of the LeapMotion
+		var lm_maxX = 300; var lm_maxY = 400; var lm_maxZ = 400;
+		
+			//Ranges of the LeapMotion
+		var lm_xRange = lm_maxX - lm_minX;
+		var lm_yRange = lm_maxY - lm_minY;
+		var lm_zRange = lm_maxZ - lm_minZ;
+		
+			//Minimum values of the canvas
+		var cvs_minX = 0; var cvs_minY = 0; var cvs_minZ = 5;
+		
+			//Maximum values of the canvas
+		var cvs_maxX = 800; var cvs_maxY = 300; var cvs_maxZ = 80;
+
+			//Ranges of the canvas
+		var cvs_xRange = cvs_maxX - cvs_minX;
+		var cvs_yRange = cvs_maxY - cvs_minY;
+		var cvs_zRange = cvs_maxZ - cvs_minZ;
+		
+			//Calculation of new canvas-sized values
+		var newX = (((f_x - lm_minX) * cvs_xRange) / lm_xRange) + cvs_minX;
+		var newY = (((f_y - lm_minY) * cvs_yRange) / lm_yRange) + cvs_minY;
+		var newZ = (((f_z - lm_minZ) * cvs_zRange) / lm_zRange) + cvs_minZ;
+		
+		var returnVal = new Array(newX, newY, newZ);
+		console.log("Original values are " + f_x + ", " + f_y + ", " + f_z)
+		console.log("returnVal is " + returnVal);
+		return returnVal;
+		}
+	
+	drawHands();
+	convertLMToC(1);
 	</script>
 </body>
 </html>
