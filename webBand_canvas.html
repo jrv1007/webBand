@@ -2,7 +2,7 @@
 <head></head>
 
 <body>
-	<img src="3dbox.jpg" style="position: absolute; z-index: -10;">
+	<img src="3dbox.jpg" width="800" height="300" style="position: absolute; z-index: -10;">
 	<canvas id="viewport" width="800" height="300" style="z-index: 10;">
 		This text is displayed if your browser does not support HTML5 Canvas.
 	</canvas>
@@ -13,72 +13,209 @@
 	
 	ctx.globalAlpha = 0.5;
 	
-	ctx.strokeStyle = "#000000";
-	ctx.lineWidth = "10";
-	ctx.strokeRect(0,0,800,300);
+	function drawHands(){
+			/*
+		
+		for (var i = 0, len = frame.hands.length; i < len; i++){
+			//For all hands in the frame.
+			//if frame.hands[i].type == "left"
+				//parse & draw left
+			//else if frame.hands[i].type == "right" 
+				//parse & draw right
+		}
+		
+		//Get leftHand vars
+		for(var i = 0, len = leftHand.fingers.length; i < len; i++){
+			switch(leftHand.fingers[i]){
+				case 0: 
+					var leftThumb = leftHand.fingers[i];
+					break;
+				case 1:
+					var leftIndex = leftHand.fingers[i];
+					break;
+				case 2:
+					var leftMiddle = leftHand.fingers[i];
+					break;
+				case 3:
+					var leftRing = leftHand.fingers[i];
+					break;
+				case 4: 
+					var leftPinky = leftHand.fingers[i];
+					break;
+			}
+		}
+		//Get rightHand vars
+		for(var i = 0, len = rightHand.fingers.length; i < len; i++){
+			switch(rightHand.fingers[i]){
+				case 0: 
+					var rightThumb = rightHand.fingers[i];
+					break;
+				case 1:
+					var rightIndex = rightHand.fingers[i];
+					break;
+				case 2:
+					var rightMiddle = rightHand.fingers[i];
+					break;
+				case 3:
+					var rightRing = rightHand.fingers[i];
+					break;
+				case 4: 
+					var rightPinky = rightHand.fingers[i];
+					break;
+			}
+		}
+		*/
+		
+		ctx.strokeStyle = "#000000";
+		ctx.lineWidth = "10";
+		ctx.strokeRect(0,0,800,300);
+		
+		
+			//Big lines
+		ctx.lineWidth = "5";
+		
+		ctx.beginPath();
+		ctx.moveTo(400,0);
+		ctx.lineTo(400,300);
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(0,150);
+		ctx.lineTo(800,150);
+		ctx.stroke();
+		
+			//Medium lines
+		ctx.lineWidth = "2";
+		
+		ctx.beginPath();
+		ctx.moveTo(200,0);
+		ctx.lineTo(200,300);
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(600,0);
+		ctx.lineTo(600,300);
+		ctx.stroke();
+		
+			//Circles
+		ctx.lineWidth = "1";
+		
+				//Left Hand
+		ctx.fillStyle = "#FF0000";
+		
+			//Pinky
+		ctx.beginPath();
+		ctx.arc(200,100,5,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		
+			//Ring
+		ctx.beginPath();
+		ctx.arc(240,80,8,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		
+			//Middle
+		ctx.beginPath();
+		ctx.arc(280,70,12,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		
+			//Index
+		ctx.beginPath();
+		ctx.arc(315,80,9,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		
+			//Thumb
+		ctx.beginPath();
+		ctx.arc(320,190,10,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		
+				//Right Hand
+		ctx.fillStyle = "#0000FF";
+		
+			//Pinky
+		ctx.beginPath();
+		ctx.arc(730,100,5,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		
+			//Ring
+		ctx.beginPath();
+		ctx.arc(710,80,8,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		
+			//Middle
+		ctx.beginPath();
+		ctx.arc(680,70,12,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		
+			//Index
+		ctx.beginPath();
+		ctx.arc(650,80,9,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		
+			//Thumb
+		ctx.beginPath();
+		ctx.arc(600,190,10,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+	} //drawHands()
 	
+	function convertLMToC(finger){
+		//Takes in a LeapMotion finger and returns
+		//a canvas (X,Y) and circle radius.
+		//["x", "y", "r"]
+		
+			//Current positions
+		/*var f_x = finger.dipPosition;
+		var f_y = finger.pipPosition;
+		var f_z = finger.mcpPosition;*/
+		
+		var f_x = 0;
+		var f_y = 200;
+		var f_z = 100;
+		
+			//Minimum values of the LeapMotion
+		var lm_minX = -300; var lm_minY = -400; var lm_minZ = -400;
+		
+			//Maximum values of the LeapMotion
+		var lm_maxX = 300; var lm_maxY = 400; var lm_maxZ = 400;
+		
+			//Ranges of the LeapMotion
+		var lm_xRange = lm_maxX - lm_minX;
+		var lm_yRange = lm_maxY - lm_minY;
+		var lm_zRange = lm_maxZ - lm_minZ;
+		
+			//Minimum values of the canvas
+		var cvs_minX = 0; var cvs_minY = 0; var cvs_minZ = 5;
+		
+			//Maximum values of the canvas
+		var cvs_maxX = 800; var cvs_maxY = 300; var cvs_maxZ = 80;
+
+			//Ranges of the canvas
+		var cvs_xRange = cvs_maxX - cvs_minX;
+		var cvs_yRange = cvs_maxY - cvs_minY;
+		var cvs_zRange = cvs_maxZ - cvs_minZ;
+		
+			//Calculation of new canvas-sized values
+		var newX = (((f_x - lm_minX) * cvs_xRange) / lm_xRange) + cvs_minX;
+		var newY = (((f_y - lm_minY) * cvs_yRange) / lm_yRange) + cvs_minY;
+		var newZ = (((f_z - lm_minZ) * cvs_zRange) / lm_zRange) + cvs_minZ;
+		
+		var returnVal = new Array(newX, newY, newZ);
+		console.log("Original values are " + f_x + ", " + f_y + ", " + f_z)
+		console.log("returnVal is " + returnVal);
+		return returnVal;
+		}
 	
-		//Big lines
-	ctx.lineWidth = "5";
-	
-	ctx.beginPath();
-	ctx.moveTo(400,0);
-	ctx.lineTo(400,300);
-	ctx.stroke();
-	
-	ctx.beginPath();
-	ctx.moveTo(0,150);
-	ctx.lineTo(800,150);
-	ctx.stroke();
-	
-		//Medium lines
-	ctx.lineWidth = "2";
-	
-	ctx.beginPath();
-	ctx.moveTo(200,0);
-	ctx.lineTo(200,300);
-	ctx.stroke();
-	
-	ctx.beginPath();
-	ctx.moveTo(600,0);
-	ctx.lineTo(600,300);
-	ctx.stroke();
-	
-		//Circles
-	ctx.lineWidth = "1";
-	
-			//Left Hand
-	ctx.fillStyle = "#FF0000";
-	
-		//Pinky
-	ctx.beginPath();
-	ctx.arc(200,100,5,0,2*Math.PI);
-	ctx.stroke();
-	ctx.fill();
-	
-		//Ring
-	ctx.beginPath();
-	ctx.arc(240,80,8,0,2*Math.PI);
-	ctx.stroke();
-	ctx.fill();
-	
-		//Middle
-	ctx.beginPath();
-	ctx.arc(280,70,12,0,2*Math.PI);
-	ctx.stroke();
-	ctx.fill();
-	
-		//Index
-	ctx.beginPath();
-	ctx.arc(315,80,9,0,2*Math.PI);
-	ctx.stroke();
-	ctx.fill();
-	
-		//Thumb
-	ctx.beginPath();
-	ctx.arc(320,190,10,0,2*Math.PI);
-	ctx.stroke();
-	ctx.fill();
+	drawHands();
+	convertLMToC(1);
 	</script>
 </body>
 </html>
