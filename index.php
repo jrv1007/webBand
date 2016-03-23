@@ -9,13 +9,29 @@
 	<script   src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
 	<script>
 		function init(){	
-		
 			var wWidth = $(window).width();
 			var wHeight = $(window).height();
 		
 			console.log("init started");
 
 			console.log("init finished");
+		}
+		
+		function checkSignUp(){
+			unField = document.getElementById('unInput').value;
+			pwField = document.getElementById('pwInput').value;
+			emailField = document.getElementById('emailInput').value;
+			
+			if(!unField || !pwField || !emailField){
+				alert("Please fill out all required fields.");
+			}else{
+				document.getElementById("signUpForm").submit();
+			}
+		}
+		
+		function closeSplash(){
+			$('#loginSplash').hide();
+			$('#loginSplash_container').hide();
 		}
 	</script>
 </head>
@@ -25,6 +41,7 @@
 	<?php
 		//DEBUG: Stop the session variable from being unset.
 		$_SESSION['un'] = "tempStop"; 
+		session_unset();
 	?>
 
 	<div id='header'>
